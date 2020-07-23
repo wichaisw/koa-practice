@@ -1,10 +1,16 @@
 const Koa = require('koa');
 const app = new Koa();
 const BodyParser = require('koa-bodyparser');
-const router = require('./routes/routes');
+const json = require('koa-json');
+const router = require('./routes/test');
 const cors = require('@koa/cors');
 
 app.use(BodyParser());
+
+// Json prettier middleware
+app.use(json()); 
+
+// router middleware
 app.use(
   cors({
     origin: '*',
@@ -13,12 +19,12 @@ app.use(
   }),
 )
 
+// simple middleware example
 // app.use(async ctx => {
 //   ctx.body = 'hello world';
 //   // console.log(ctx.request)
 //   // console.log(ctx.request)
 // });
-
 
 app.use(router.routes());
 
