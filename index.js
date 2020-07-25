@@ -29,10 +29,7 @@ app.use(
 // });
 // app.use(router.routes());
 
-app.use(
-  testRouter.routes(), 
-  testRouter.prefix('/main')
-);
+app.use(testRouter.prefix('/main').routes());
 
 db.sequelize.sync().then(() => {
   const server = app.listen(8000, () => {
